@@ -1,0 +1,37 @@
+{"level":"error","message":"404 - Not Found - /favicon.ico - /favicon.ico - GET - ::1","service":"astm-api","timestamp":"2025-05-14 19:50:21"}
+{"level":"error","message":"404 - Not Found - /swagger - /swagger - GET - ::1","service":"astm-api","timestamp":"2025-05-14 19:50:35"}
+{"level":"error","message":"Database query error: No database selected","service":"astm-api","timestamp":"2025-05-14 19:51:40"}
+{"level":"error","message":"500 - No database selected - /api/auth/register - POST - ::1","service":"astm-api","timestamp":"2025-05-14 19:51:40"}
+{"level":"error","message":"Database query error: No database selected","service":"astm-api","timestamp":"2025-05-14 19:54:07"}
+{"level":"error","message":"500 - No database selected - /api/auth/register - POST - ::1","service":"astm-api","timestamp":"2025-05-14 19:54:07"}
+{"level":"error","message":"Database query error: No database selected","service":"astm-api","timestamp":"2025-05-14 19:54:17"}
+{"level":"error","message":"500 - No database selected - /api/auth/register - POST - ::1","service":"astm-api","timestamp":"2025-05-14 19:54:17"}
+{"level":"error","message":"Database query error: No database selected","service":"astm-api","timestamp":"2025-05-14 19:54:54"}
+{"level":"error","message":"500 - No database selected - /api/auth/register - POST - ::1","service":"astm-api","timestamp":"2025-05-14 19:54:54"}
+{"level":"error","message":"201 - secretOrPrivateKey must have a value - /api/auth/register - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:00:04"}
+{"level":"error","message":"400 - User already exists - /api/auth/register - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:01:56"}
+{"level":"error","message":"500 - secretOrPrivateKey must have a value - /api/auth/login - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:02:18"}
+{"level":"error","message":"500 - secretOrPrivateKey must have a value - /api/auth/login - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:02:49"}
+{"level":"error","message":"500 - secretOrPrivateKey must have a value - /api/auth/login - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:08:06"}
+{"level":"error","message":"500 - secretOrPrivateKey must have a value - /api/auth/login - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:11:34"}
+{"level":"error","message":"500 - secretOrPrivateKey must have a value - /api/auth/login - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:11:46"}
+{"level":"error","message":"500 - secretOrPrivateKey must have a value - /api/auth/login - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:12:21"}
+{"level":"error","message":"401 - Not authorized, no token - /api/auth/me - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:17:28"}
+{"level":"error","message":"401 - Not authorized, invalid token - /api/auth/me - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:20:05"}
+{"level":"error","message":"401 - Not authorized, no token - /api/donations - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:21:27"}
+{"level":"error","message":"401 - Not authorized, no token - /api/donations - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:21:34"}
+{"level":"error","message":"401 - Not authorized, no token - /api/users - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:22:00"}
+{"level":"error","message":"401 - Not authorized, no token - /api/users/1 - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:22:28"}
+{"level":"error","message":"401 - Not authorized, no token - /api/auth/me - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:23:01"}
+{"level":"error","message":"401 - Not authorized, invalid token - /api/auth/me - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:27:20"}
+{"level":"error","message":"401 - Not authorized, no token - /api/auth/me - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:31:13"}
+{"level":"error","message":"401 - Not authorized, no token - /api/donations - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:31:29"}
+{"level":"error","message":"401 - Not authorized, no token - /api/donations - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:32:04"}
+{"level":"error","message":"403 - Not authorized as an admin - /api/donations - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:32:53"}
+{"level":"error","message":"401 - Not authorized, no token - /api/donations - GET - ::1","service":"astm-api","timestamp":"2025-05-14 20:42:57"}
+{"level":"error","message":"500 - {\"error\":\"invalid_client\",\"error_description\":\"Client Authentication failed\"} - /api/payments/paypal - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:43:34"}
+{"level":"error","message":"M-Pesa auth error: Request failed with status code 400","service":"astm-api","timestamp":"2025-05-14 20:43:50"}
+{"level":"error","message":"M-Pesa error: Request failed with status code 400","service":"astm-api","timestamp":"2025-05-14 20:43:50"}
+{"level":"error","message":"500 - Request failed with status code 400 - /api/payments/mpesa - POST - ::1","service":"astm-api","timestamp":"2025-05-14 20:43:50"}
+{"level":"error","message":"401 - Not authorized, no token - /api/users - GET - ::1","service":"astm-api","timestamp":"2025-05-16 09:21:00"}
+{"level":"error","message":"401 - Not authorized, invalid token - /api/donations - GET - ::1","service":"astm-api","timestamp":"2025-05-16 09:24:17"}
