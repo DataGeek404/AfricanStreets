@@ -32,6 +32,7 @@ export function SupportForm() {
 
   return (
     <div
+      id="join"
       className="w-full bg-cover bg-center py-20"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >

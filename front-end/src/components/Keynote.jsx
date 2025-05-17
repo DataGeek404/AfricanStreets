@@ -21,24 +21,54 @@ export function KeynoteSpeakers() {
       image: drFiona
     },
     {
-      name: "Speaker 2 Name",
-      title: "Speaker 2 Title",
-      role: "Speaker 2 Role",
-      additionalRole: "Speaker 2 Additional Role",
+      name: "Dr Salome Mbugua",
+      title: "Co- founder of Street Medicine Africa",
+      role: "UN Mandate Holder, A researcher",
+      other: "CEO Akidwa",
+      others: "Gender Equality Activist and human rights advocate",
+      additionalRole: "Appointed to the Irish Human Rights and Equality Commission by President Michael D. Higgins in 2018",
       points: [
-        "Point 1",
-        "Point 2",
-        "Point 3"
+        "Moved by the substance abuse crisis in her village in Kenya reached out to Maryanne Karanja to start an initiative together that will tackle the prevalence of substance abuse in society.",
+        "Advocated for action-oriented conversations to address the problem.",
+        "Stressed that financial wealth is not a prerequisite for finding solutions."
+      ],
+      image: speaker2
+    },
+    // {
+    //   name: "Dr Andrew Toro",
+    //   title: "Head of Drug Abuse Commission, Ministry of Health",
+    //   role: "UN Mandate Holder, A researcher",
+    //   points: [
+    //     "Stressed the increasing prevalence of drug abuse and the urgent need for intervention.",
+    //     "Highlighted government mandates, including surveillance, public education, and policy enforcement.",
+    //     "Noted ongoing research to better understand the problem.",
+    //     "Shared the government's commitment to mental health services, combating prescription drug abuse, and regulating alcohol and drug marketing",
+    //     "Announced upcoming public awareness campaigns.",
+    //     "Officially launched Street Medicine Africa in partnership with the Ministry of Health."
+    //   ],
+    //   image: speaker2
+    // },
+    {
+      name: "Joyce Igogo",
+      title: "Head of Drug Abuse Commission, Ministry of Health",
+      role: "UN Mandate Holder, A researcher",
+      points: [
+        "Stressed the increasing prevalence of drug abuse and the urgent need for intervention.",
+        "Highlighted government mandates, including surveillance, public education, and policy enforcement.",
+        "Noted ongoing research to better understand the problem.",
+        "Shared the government's commitment to mental health services, combating prescription drug abuse, and regulating alcohol and drug marketing",
+        "Announced upcoming public awareness campaigns.",
+        "Officially launched Street Medicine Africa in partnership with the Ministry of Health."
       ],
       image: speaker2
     }
   ];
 
   return (
-    <div className="w-full bg-white py-16">
+    <div className="w-full bg-[#1D204B] py-16">
       {/* Centered Header */}
       <div className="max-w-6xl mx-auto px-4 md:px-8 mb-16">
-        <h2 className="text-[#1D204B] text-3xl md:text-4xl font-bold text-center">
+        <h2 className="text-white text-3xl md:text-4xl font-bold text-center">
           Key note speakers & speeches
         </h2>
       </div>
@@ -69,13 +99,13 @@ export function KeynoteSpeakers() {
                 {/* Stacked layout (profile above points) */}
                 <div className="flex flex-col items-center text-white">
                   {/* Profile Picture */}
-                  <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-[#41B4E7] mb-6">
+                  {/* <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-[#41B4E7] mb-6">
                     <img 
                       src={speaker.image} 
                       alt={speaker.name}
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </div> */}
 
                   {/* Speaker Details */}
                   <div className="text-center mb-8">
@@ -85,7 +115,9 @@ export function KeynoteSpeakers() {
                     <p>
                       {speaker.title}<br />
                       {speaker.role}<br />
-                      {speaker.additionalRole}
+                      {speaker.additionalRole}<br/>
+                      {speaker.other}<br/>
+                      {speaker.others}
                     </p>
                   </div>
 

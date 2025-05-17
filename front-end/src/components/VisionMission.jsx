@@ -7,10 +7,10 @@ export function VisionMission() {
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         
         {/* Top Section - Vision */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-16 md:mb-20 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-20 md:mb-40 items-center">
           {/* Content - Left */}
           <div className="flex flex-col justify-center md:pr-6">
-            <h3 className="text-[80px] md:text-[80px] lg:text-[120px] font-bold text-[#31AC6E] leading-[0.85] mb-10">
+            <h3 className="text-[50px] md:text-[70px] lg:text-[100px] font-bold text-[#31AC6E] leading-[0.85] mb-10">
               Our Vision
             </h3>
             <p className="text-md text-[#1D204B] max-w-[500px]">
@@ -42,7 +42,7 @@ export function VisionMission() {
           
           {/* Content - Right */}
           <div className="flex flex-col justify-center md:pl-6">
-            <h3 className="text-[70px] md:text-[70px] lg:text-[120px] font-bold text-[#31AC6E] leading-[0.85] mb-10">
+            <h3 className="text-[50px] md:text-[60px] lg:text-[80px] font-bold text-[#31AC6E] leading-[0.85] mb-10">
               Our Mission
             </h3>
             <p className="text-md text-[#1D204B] max-w-[500px]">

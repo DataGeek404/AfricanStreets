@@ -3,7 +3,7 @@ import whoWeAreImage from '../assets/4.jpg'; // Replace with your actual image
 
 export function WhoWeAre() {
   return (
-    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#1D204B] py-12 text-white">
+    <div id ="about" className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#1D204B] py-12 text-white">
       <div className="max-w-5xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Left: Image */}

@@ -106,3 +106,18 @@ input[type="datetime-local"]:not(:focus):not([value]):before {
   width: 100%;
 }
 
+@keyframes scaleIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-scaleIn {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+@keyframes progress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+.animate-progress {
+  animation: progress 3s linear forwards;
+}

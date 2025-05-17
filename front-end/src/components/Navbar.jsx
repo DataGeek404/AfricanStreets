@@ -23,22 +23,22 @@ export default function Navbar() {
             {/* Desktop Menu - Centered */}
             <div className="hidden md:flex flex-1 justify-center">
               <ul className="flex space-x-8 text-sm font-medium">
-                <li><Link to="/about" className="text-white hover:opacity-80 transition">About Us</Link></li>
-                <li><Link to="/themes" className="text-white hover:opacity-80 transition">Themes</Link></li>
-                <li><Link to="/approach" className="text-white hover:opacity-80 transition">Approach</Link></li>
-                <li><Link to="/events" className="text-white hover:opacity-80 transition">Events</Link></li>
-                <li><Link to="/join" className="text-white hover:opacity-80 transition">Join Us</Link></li>
+                <li><a href="/#our-pillars" className="text-white hover:opacity-80 transition">Our Pillars</a></li>
+                <li><a href="/#about" className="text-white hover:opacity-80 transition">About Us</a></li>
+                <li><a href="/#approach" className="text-white hover:opacity-80 transition">Approach</a></li>
+                <li><a href="/#launch" className="text-white hover:opacity-80 transition">Launch</a></li>
+                <li><a href="/#join" className="text-white hover:opacity-80 transition">Join Us</a></li>
               </ul>
             </div>
 
             {/* Support Us Button - with right padding */}
             <div className="hidden md:block pr-4">
-              <Link 
-                to="/support" 
+              <a 
+                href="/#support" 
                 className="px-6 py-2 bg-[#1D204B] text-white font-medium rounded-full border-2 border-white hover:bg-[#2a2e6b] transition"
               >
                 Support Us
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -62,19 +62,19 @@ export default function Navbar() {
           {isMenuOpen && (
             <div className="md:hidden bg-gradient-to-b from-[#1D204B] to-[#41B4E7] px-8 py-4 mt-2 rounded-lg shadow-lg">
               <ul className="flex flex-col space-y-4 text-sm font-medium">
-                <li><Link to="/about" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>About Us</Link></li>
-                <li><Link to="/themes" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Themes</Link></li>
-                <li><Link to="/approach" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Approach</Link></li>
-                <li><Link to="/events" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Events</Link></li>
-                <li><Link to="/join" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Join Us</Link></li>
+                <li><a href="/#about" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>About Us</a></li>
+                <li><a href="/#our-pillars" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Our Pillars</a></li>
+                <li><a href="/#approach" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Approach</a></li>
+                <li><a href="/#launch" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Launch</a></li>
+                <li><a href="/#join" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Join Us</a></li>
                 <li>
-                  <Link 
-                    to="/support" 
+                  <a
+                    href="/#support" 
                     className="block w-full text-center px-6 py-2 bg-[#1D204B] text-white font-medium rounded-full border-2 border-white mt-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Support Us
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>

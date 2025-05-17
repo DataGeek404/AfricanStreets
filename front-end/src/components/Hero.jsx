@@ -12,6 +12,8 @@ import { PartnersSection } from "./Partner";
 import { SupportForm } from "./SupportSection";
 import { DonationSection } from "./DonationSection";
 import { Footer } from "./Footer";
+import { BoardOfDirectors } from "./BoardofDirectors";
+import OurPillars from "./ImageSlider";
 
 export default function Hero() {
   return (
@@ -29,17 +31,17 @@ export default function Hero() {
                 background: "conic-gradient(from 90deg, #1D204B 0deg, #40B4E7 90deg, #1D204B 180deg, #40B4E7 270deg, #1D204B 360deg)"
             }}
             >
-            <Link
-                to="/invite"
+            <a
+                href="/#support"
                 className="block px-6 py-3 bg-[#1D204B] text-white font-medium rounded-full hover:opacity-90 transition"
             >
-                Invite us to your community
-            </Link>
+                Support Us
+            </a>
         </div>
       </div>
     </section>
 
-    <ImageSlider/>
+    <OurPillars/>
 
     <WhoWeAre/>
 
@@ -54,6 +56,8 @@ export default function Hero() {
     <KeynoteSpeakers/>
 
     <LivedExperiencesPanel/>
+
+    <BoardOfDirectors/>
 
     <PartnersSection/>
     

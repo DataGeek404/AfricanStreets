@@ -1,61 +1,34 @@
-// src/components/ImageSlider.jsx
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import slide1 from '../assets/image16.png';
-import slide2 from '../assets/1.jpg';
-import slide3 from '../assets/2.jpg';
-
-import dove from '../assets/Group 8.png'; // Dove image
+import backgroundVideo from '../assets/ASTM-MAIN-VIDEO-INTRO.mp4';
+import dove from '../assets/Group 8.png';
 import themeImage1 from '../assets/Rectangle 9.png';
 import themeImage2 from '../assets/Rectangle 11.png';
 import themeImage3 from '../assets/Rectangle 13.png';
 
-const slides = [slide1, slide2, slide3];
-
-export default function ImageSlider() {
+export default function OurPillars() {
   return (
-    <div className="w-screen bg-[#40B4E7] relative z-0 pt-28 pb-16">
-      {/* Slider appears halfway above this section */}
-      <div className="absolute -top-32 left-1/2 transform -translate-x-1/2 w-full max-w-6xl px-4 z-10">
-        <Swiper
-          modules={[Pagination]}
-          pagination={{
-            el: '.custom-pagination',
-            clickable: true,
-          }}
-          spaceBetween={20}
-          slidesPerView={1}
-          grabCursor={true}
-          className="rounded-lg overflow-hidden shadow-lg"
-        >
-          {slides.map((img, index) => (
-            <SwiperSlide key={index}>
-              <img
-                src={img}
-                alt={`Slide ${index + 1}`}
-                className="w-full h-80 object-cover"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        {/* Pagination Dots */}
-        <div className="custom-pagination flex justify-center gap-2 mt-4">
-          {slides.map((_, index) => (
-            <span
-              key={index}
-              className="swiper-pagination-bullet w-3 h-3 bg-gray-300 rounded-full opacity-100"
-            />
-          ))}
+    <div id="our-pillars" className="w-screen bg-[#40B4E7] relative z-0 pt-40 pb-16">
+      {/* Video Player with increased height */}
+      <div className="absolute -top-40 left-1/2 transform -translate-x-1/2 w-full max-w-7xl px-4 z-10">
+        <div className="rounded-lg overflow-hidden shadow-lg">
+          <video 
+            controls 
+            autoPlay 
+            muted 
+            loop 
+            className="w-full h-[32rem] object-cover" // Increased from h-80 to h-[32rem]
+          >
+            <source src={backgroundVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
 
-      {/* Content below slider */}
-      <div className="max-w-5xl mx-auto px-4 mt-40">
+      {/* Content below video - Adjusted spacing */}
+      <div className="max-w-5xl mx-auto px-4 mt-52"> {/* Increased mt-40 to mt-52 */}
         {/* Dove Image */}
         <div className="flex justify-center mt-6 mb-6">
           <img
@@ -65,7 +38,7 @@ export default function ImageSlider() {
           />
         </div>
 
-        {/* Section Title */}
+        {/* Rest of your content remains the same */}
         <div className="space-y-8 text-white">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-2">Our Pillars</h2>

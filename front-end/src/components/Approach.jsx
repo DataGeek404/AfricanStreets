@@ -1,5 +1,5 @@
-import doveImage from '../assets/Group 7.png'; // Make sure to import your dove image
-import image1 from '../assets/Rectangle 46.png'; // Replace with your actual images
+import doveImage from '../assets/Group 7.png';
+import image1 from '../assets/Rectangle 46.png';
 import image2 from '../assets/Rectangle 47.png';
 import image3 from '../assets/Rectangle 48.png';
 import image4 from '../assets/Rectangle 21.png';
@@ -11,21 +11,21 @@ import image9 from '../assets/Rectangle 32.png';
 
 export function Approach() {
   return (
-    <div className="w-full bg-[#1D204B] py-16 md:py-24 px-4">
+    <div id="approach" className="w-full bg-[#1D204B] py-16 md:py-24 px-4">
       <div className="max-w-6xl mx-auto relative">
-        {/* Header Section */}
+        {/* Header Section - Now justified */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#41B4E7] mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#41B4E7] mb-4 text-center px-4">
             Community-Centered Approach
           </h2>
-          <p className="text-white text-sm md:text-base max-w-2xl mx-auto">
+          <p className="text-white text-sm md:text-base max-w-2xl mx-auto text-center px-4">
             Tackling Substance Use Disorders in Vulnerable Populations
             <br />
             Through Community-Centered Street Medicine in Kenya
           </p>
         </div>
 
-        {/* Dove and First Divider */}
+        {/* Dove and First Divider (unchanged) */}
         <div className="relative mb-8 w-screen -left-4 md:-left-8 lg:-left-[calc((100vw-100%)/2)] overflow-x-visible">
           <img
             src={doveImage}
@@ -35,17 +35,18 @@ export function Approach() {
           <div className="mx-auto h-[2px] w-3/4 bg-gradient-to-r from-[#1D204B] via-[#40B4E7] to-[#1D204B]"></div>
         </div>
 
-        <p className="text-white text-3xl md:text-4xl lg:text-5xl text-center mb-12 max-w-6xl mx-auto py-6 md:py-8 lg:py-10">
-          Substance use disorders (SUDs) in Kenya are a growing national crisis, affecting an estimated
-          <span className="text-[#41B4E7] font-bold"> 4.7 million people aged 15–65</span>.
+        {/* Justified main paragraph */}
+        <p className="text-white text-3xl md:text-4xl lg:text-5xl text-center mb-12 max-w-6xl mx-auto py-6 md:py-8 lg:py-10 px-4">
+          Substance use disorders (SUDs) in Kenya are a growing national crisis, affecting an estimated<br/>
+          <span className="text-[#41B4E7] font-bold"> 4.7 million people aged 15-65</span>.
         </p>
 
         <div className="mx-auto h-[2px] w-3/4 bg-gradient-to-r from-[#1D204B] via-[#40B4E7] to-[#1D204B] mb-16"></div>
 
-        {/* First Content Block */}
+        {/* First Content Block - Justified */}
         <div className="mb-24">
-          <div className="text-white text-center max-w-6xl mx-auto space-y-6">
-            <p className="py-6 md:py-8 lg:py-10">
+          <div className="text-white max-w-6xl mx-auto space-y-6">
+            <p className="py-6 md:py-8 lg:py-10 text-justify px-4">
               The consequences are particularly acute for teenagers and youth, women and children, and the elderly, all of whom face layered
               vulnerabilities and social exclusion due to substance abuse and limited access to support. We find that the men have more alcohol and substance use dependency and addiction compared to women.
               <br /><br />
@@ -67,10 +68,10 @@ export function Approach() {
 
         <div className="mx-auto h-[2px] w-full bg-gradient-to-r from-[#1D204B] via-[#40B4E7] to-[#1D204B] mb-16"></div>
 
-        {/* Second Content Block */}
+        {/* Second Content Block - Justified */}
         <div className="mb-24">
-          <div className="text-white text-center max-w-6xl mx-auto space-y-6">
-            <p className="py-6 md:py-8 lg:py-10">
+          <div className="text-white max-w-6xl mx-auto space-y-6">
+            <p className="py-6 md:py-8 lg:py-10 text-justify px-4">
               Women and children face additional layers of harm—women affected by substance use and addiction
               are more susceptible to exploitation, gender based violence, domestic abuse ,rape and transactional sex,
               while children growing up in such environments endure neglect,violence and long-term emotional and psychological
@@ -88,10 +89,10 @@ export function Approach() {
 
         <div className="mx-auto h-[2px] w-full bg-gradient-to-r from-[#1D204B] via-[#40B4E7] to-[#1D204B] mb-16"></div>
 
-        {/* Third Content Block */}
+        {/* Third Content Block - Justified */}
         <div className="mb-24">
-          <div className="text-white text-center max-w-6xl mx-auto space-y-6">
-            <p className="py-6 md:py-8 lg:py-10">
+          <div className="text-white max-w-6xl mx-auto space-y-6">
+            <p className="py-6 md:py-8 lg:py-10 text-justify px-4">
               Men are most hit by alcohol addiction and substance use I Kenya. Africa street Therapy Medicine partners with
               stake holders and volunteer groups to offer HIV ,diabetes ,blood pressure tests and counselling , psycho educative
               sessions , psychiatry visits ,holistic therapy treatment and food .
@@ -110,10 +111,10 @@ export function Approach() {
 
         <div className="mx-auto h-[2px] w-full bg-gradient-to-r from-[#1D204B] via-[#40B4E7] to-[#1D204B] mb-16"></div>
 
-        {/* Final Paragraph */}
+        {/* Final Paragraph - Justified */}
         <div className="mb-24">
-          <div className="text-white text-center max-w-6xl mx-auto space-y-6">
-            <p className="py-6 md:py-8 lg:py-10">
+          <div className="text-white max-w-6xl mx-auto space-y-6">
+            <p className="py-6 md:py-8 lg:py-10 text-justify px-4">
               Africa Street Therapy Medicine is registered under Street Medicine Institute and proposes a holistic,
               innovative response modeled on successful street medicine approaches developed in Ireland and other
               global street medicine programs.

@@ -28,7 +28,7 @@ export function RootedLocally() {
 
 
         {/* Centered Content */}
-        <div className="max-w-6xl mx-auto text-center mb-20">
+        <div className="max-w-6xl mx-auto text-justify mb-20">
           <p className="text-gray-700 text-sm md:text-base leading-relaxed">
             Inspired by models like Street Medicine Ireland and other global street
             medicine programs, our team initiated a similar approach in Kenya.

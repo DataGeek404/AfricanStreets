@@ -38,16 +38,16 @@ export function LivedExperiencesPanel() {
   ];
 
   return (
-    <div className="w-full bg-white py-16">
+    <div className="w-full bg-[#31AC6E] py-16">
       {/* Centered Header */}
       <div className="max-w-6xl mx-auto px-4 md:px-8 mb-16">
-        <h2 className="text-[#1D204B] text-3xl md:text-4xl font-bold text-center">
+        <h2 className="text-white text-3xl md:text-4xl font-bold text-center">
           Lived experiences panel
         </h2>
       </div>
 
       {/* Full-Width Blue Background */}
-      <div className="w-full bg-[#41B4E7] py-12 relative">
+      <div className="w-full bg-[#31AC6E] py-12 relative">
         {/* Slider Container with edge peeking */}
         <Swiper
           slidesPerView={1.1}
@@ -68,17 +68,17 @@ export function LivedExperiencesPanel() {
           {panelists.map((panelist, index) => (
             <SwiperSlide key={index}>
               {/* Individual Slide Content */}
-              <div className="max-w-4xl mx-auto bg-[#41B4E7] rounded-xl p-8 h-full">
+              <div className="max-w-4xl mx-auto bg-[#31AC6E] rounded-xl p-8 h-full">
                 {/* Stacked layout (profile above points) */}
                 <div className="flex flex-col items-center text-white">
                   {/* Profile Picture */}
-                  <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white mb-6">
+                  {/* <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white mb-6">
                     <img 
                       src={panelist.image} 
                       alt={panelist.name}
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </div> */}
 
                   {/* Panelist Details */}
                   <div className="text-center mb-8">
@@ -107,8 +107,8 @@ export function LivedExperiencesPanel() {
         </Swiper>
 
         {/* Optional subtle edge indicators */}
-        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#41B4E7] to-transparent pointer-events-none z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#41B4E7] to-transparent pointer-events-none z-10"></div>
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#31AC6E] to-transparent pointer-events-none z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#31AC6E] to-transparent pointer-events-none z-10"></div>
       </div>
     </div>
   );

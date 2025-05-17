@@ -5,7 +5,7 @@ import lowerImage from '../assets/Rectangle 53.png'; // Replace with your actual
 
 export function LaunchSection() {
   return (
-    <div className="w-full bg-white py-12 md:py-16">
+    <div id="launch" className="w-full bg-white py-12 md:py-16">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         
         {/* Launch Content */}
@@ -13,8 +13,8 @@ export function LaunchSection() {
           
           {/* Header - stacked words */}
           <div className="md:pr-4 h-full flex flex-col items-start justify-center leading-none">
-            <span className="text-[#41B4E7] text-5xl md:text-6xl font-bold">The</span>
-            <span className="text-[#41B4E7] text-5xl md:text-6xl font-bold">Launch</span>
+            <span className="text-[#31AC6E] text-5xl md:text-6xl font-bold">The</span>
+            <span className="text-[#31AC6E] text-5xl md:text-6xl font-bold">Launch</span>
           </div>
           
           {/* Paragraph Content */}
@@ -42,13 +42,14 @@ export function LaunchSection() {
       </div>
 
       {/* New Green Background Section */}
-      <div className="w-full bg-[#31AC6E] mt-16">
+      <div className="w-full bg-[#31AC6E] mt-16 -mb-16">
         {/* Top Full-width Image */}
         <img 
           src={topImage} 
           alt="Symposium event" 
-          className="w-full h-auto object-cover"
+          className="w-full h-auto max-h-[300px] md:max-h-[500px] object-cover object-center"
         />
+
 
         {/* Spacing below image */}
         <div className="py-12"></div>
