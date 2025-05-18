@@ -163,7 +163,7 @@ export function SupportForm() {
               type="submit"
               className="w-full bg-[#1D204B] text-white py-3 px-6 rounded-md hover:bg-[#3191c6] transition-colors text-lg font-medium"
             >
-              Send
+              Submit
             </button>
           </form>
         </motion.div>
