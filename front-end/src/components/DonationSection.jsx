@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState } from 'react';
 import landscapeImage from '../assets/peeps.jpg';
 import mpesaLogo from '../assets/image 1.png';
@@ -5,6 +6,7 @@ import paypalLogo from '../assets/paypal.png';
 import stripeLogo from '../assets/image.png';
 
 export function DonationSection({ hideImage = false, className = "" }) {
+  // eslint-disable-next-line no-unused-vars
   const [formData, setFormData] = useState({
     fullName: '',
     organization: '',
