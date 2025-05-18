@@ -45,7 +45,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
 
 
     try {
-      const res = await fetch('https://your-backend.com/api/donate', {
+      const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
