@@ -32,7 +32,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
     setFormData(f => ({ ...f, paymentMethod: method.name }));
   };
 
-  const handleSubmit = async e => {
+ const handleSubmit = async e => {
   e.preventDefault();
   setSubmitting(true);
   setMessage('');
@@ -45,13 +45,11 @@ export function DonationSection({ hideImage = false, className = "" }) {
   }
 
   try {
-    const token = localStorage.getItem('token'); // <-- make sure the user is logged in and token is stored
-
     const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        ...(token && { Authorization: `Bearer ${token}` }) // <--- Add token header
+        'Content-Type': 'application/json'
+        // Removed Authorization header — this endpoint is public
       },
       body: JSON.stringify(formData)
     });
