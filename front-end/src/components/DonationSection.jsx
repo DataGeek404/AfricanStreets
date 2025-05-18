@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React, { useState } from 'react';
 import landscapeImage from '../assets/peeps.jpg';
 import mpesaLogo from '../assets/image 1.png';
@@ -6,7 +5,6 @@ import paypalLogo from '../assets/paypal.png';
 import stripeLogo from '../assets/image.png';
 
 export function DonationSection({ hideImage = false, className = "" }) {
-  // eslint-disable-next-line no-unused-vars
   const [formData, setFormData] = useState({
     fullName: '',
     organization: '',
@@ -25,42 +23,50 @@ export function DonationSection({ hideImage = false, className = "" }) {
     { name: 'Stripe', logo: stripeLogo }
   ];
 
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(f => ({ ...f, [name]: value }));
+  };
+
+  const handlePaymentMethodClick = method => {
+    setFormData(f => ({ ...f, paymentMethod: method.name }));
+  };
+
   const handleSubmit = async e => {
-    e.preventDefault();
-    setSubmitting(true);
-    setMessage('');
+  e.preventDefault();
+  setSubmitting(true);
+  setMessage('');
 
   const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
-    if (!safaricomRegex.test(formData.phone)) {
-      setMessage("Please enter a valid Safaricom number.");
-      setSubmitting(false);
-      return;
-    }
+  if (!safaricomRegex.test(formData.phone)) {
+    setMessage("Please enter a valid Safaricom number.");
+    setSubmitting(false);
+    return;
+  }
 
-    try {
-      // Use CORS proxy
-      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-      const targetUrl = 'https://backend-yr3r.onrender.com/api/donations';
-      
-      const res = await fetch(proxyUrl + targetUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest' // Some proxies require this
-        },
-        body: JSON.stringify(formData)
-      });
+  try {
+    const token = localStorage.getItem('token'); // <-- make sure the user is logged in and token is stored
 
-      const data = await res.json();
+    const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { Authorization: `Bearer ${token}` }) // <--- Add token header
+      },
+      body: JSON.stringify(formData)
+    });
 
-      if (!res.ok) throw new Error(data.message || 'Payment failed');
-      setMessage('Payment initiated! Awaiting confirmation...');
-    } catch (err) {
-      setMessage(err.message || 'Something went wrong.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.message || 'Payment failed');
+
+    setMessage('Payment initiated! Awaiting confirmation...');
+  } catch (err) {
+    setMessage(err.message || 'Something went wrong.');
+  } finally {
+    setSubmitting(false);
+  }
+};
 
 
   return (
@@ -87,7 +93,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
             <div className="bg-gray-50 p-8 rounded-xl shadow-md">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Full Name */}
-                {/* <div>
+                <div>
                   <label className="block text-gray-700">Full Name</label>
                   <input
                     type="text"
@@ -98,10 +104,10 @@ export function DonationSection({ hideImage = false, className = "" }) {
                     placeholder="Enter your full name"
                     className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
                   />
-                </div> */}
+                </div>
 
                 {/* Organization */}
-                {/* <div>
+                <div>
                   <label className="block text-gray-700">Organization</label>
                   <input
                     type="text"
@@ -111,10 +117,10 @@ export function DonationSection({ hideImage = false, className = "" }) {
                     placeholder="Organization name (optional)"
                     className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
                   />
-                </div> */}
+                </div>
 
                 {/* Email */}
-                {/* <div>
+                <div>
                   <label className="block text-gray-700">Email Address</label>
                   <input
                     type="email"
@@ -125,7 +131,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
                     placeholder="you@example.com"
                     className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
                   />
-                </div> */}
+                </div>
 
                 {/* Phone */}
                 {/* <div>
