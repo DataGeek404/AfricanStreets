@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 import visionImage from '../assets/IMG_9307.jpg';
 import missionImage from '../assets/IMG_9282.jpg';
 
@@ -5,9 +7,15 @@ export function VisionMission() {
   return (
     <div className="w-full bg-white py-12 md:py-20">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
-        
+
         {/* Top Section - Vision */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-20 md:mb-40 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-8 md:gap-12 mb-20 md:mb-40 items-center"
+        >
           {/* Content - Left */}
           <div className="flex flex-col justify-center md:pr-6">
             <h3 className="text-[50px] md:text-[70px] lg:text-[100px] font-bold text-[#31AC6E] leading-[0.85] mb-10">
@@ -18,7 +26,7 @@ export function VisionMission() {
               ensuring dignity, health, and support for all especially the most vulnerable.
             </p>
           </div>
-          
+
           {/* Image - Right */}
           <div className="w-full rounded-[10%] overflow-hidden shadow-lg">
             <img
@@ -27,10 +35,16 @@ export function VisionMission() {
               className="w-full h-auto object-contain"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Bottom Section - Mission */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"
+        >
           {/* Image - Left */}
           <div className="w-full rounded-[10%] overflow-hidden shadow-lg">
             <img
@@ -39,7 +53,7 @@ export function VisionMission() {
               className="w-full h-auto object-contain"
             />
           </div>
-          
+
           {/* Content - Right */}
           <div className="flex flex-col justify-center md:pl-6">
             <h3 className="text-[50px] md:text-[60px] lg:text-[80px] font-bold text-[#31AC6E] leading-[0.85] mb-10">
@@ -55,7 +69,8 @@ export function VisionMission() {
               society.
             </p>
           </div>
-        </div>
+        </motion.div>
+
       </div>
     </div>
   );

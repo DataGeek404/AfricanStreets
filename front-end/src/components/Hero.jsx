@@ -1,6 +1,7 @@
 // src/components/Hero.jsx
-import { Link } from "react-router-dom";
-import ImageSlider from "./ImageSlider";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
+import OurPillars from "./ImageSlider";
 import { WhoWeAre } from "./WhoAreWe";
 import { VisionMission } from "./VisionMission";
 import { RootedLocally } from "./RootedLocally";
@@ -13,61 +14,59 @@ import { SupportForm } from "./SupportSection";
 import { DonationSection } from "./DonationSection";
 import { Footer } from "./Footer";
 import { BoardOfDirectors } from "./BoardofDirectors";
-import OurPillars from "./ImageSlider";
 
 export default function Hero() {
   return (
-  <>
-    <section className="bg-[#ffffff] py-12 pb-50 px-4 sm:px-6 text-center">
+    <>
+      <section className="bg-white py-16 px-4 pb-50 sm:px-6 text-center">
+        <div className="max-w-4xl mx-auto">
 
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold text-[#1D204B] mb-4">
-          We support African communities in tackling harmful substance use, strengthening mental health, and building systems of dignity & care for all.
-        </h1>
+          {/* Heading with fade-up animation */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1D204B] leading-relaxed mb-6"
+          >
+            We support African communities in tackling harmful substance use,
+            strengthening mental health, and building systems of dignity & care for all.
+          </motion.h1>
 
-        <div
-            className="inline-block mt-4 p-[2px] rounded-full"
+          {/* Animated Button with Gradient Border */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-block mt-6 p-[2px] rounded-full"
             style={{
-                background: "conic-gradient(from 90deg, #1D204B 0deg, #40B4E7 90deg, #1D204B 180deg, #40B4E7 270deg, #1D204B 360deg)"
+              background: "conic-gradient(from 90deg, #1D204B 0deg, #40B4E7 90deg, #1D204B 180deg, #40B4E7 270deg, #1D204B 360deg)"
             }}
-            >
+          >
             <a
-                href="/#support"
-                className="block px-6 py-3 bg-[#1D204B] text-white font-medium rounded-full hover:opacity-90 transition"
+              href="/#support"
+              className="block px-6 py-3 bg-[#1D204B] text-white font-medium rounded-full hover:opacity-90 transition"
             >
-                Support Us
+              Support Us
             </a>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <OurPillars/>
-
-    <WhoWeAre/>
-
-    <VisionMission/>
-
-    <Approach/>
-
-    <RootedLocally/>
-
-    <LaunchSection/>
-
-    <KeynoteSpeakers/>
-
-    <LivedExperiencesPanel/>
-
-    <BoardOfDirectors/>
-
-    <PartnersSection/>
-    
-    <SupportForm/>
-
-    <DonationSection/>
-
-    <Footer/>
-    
-
-  </>  
+      <OurPillars />
+      <WhoWeAre />
+      <VisionMission />
+      <Approach />
+      <RootedLocally />
+      <LaunchSection />
+      <KeynoteSpeakers />
+      <LivedExperiencesPanel />
+      <BoardOfDirectors />
+      <PartnersSection />
+      <SupportForm />
+      <DonationSection />
+      <Footer />
+    </>
   );
 }

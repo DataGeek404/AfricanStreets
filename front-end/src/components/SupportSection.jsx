@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import backgroundImage from '../assets/blaah.png';
 import { CalendarIcon } from '@heroicons/react/24/outline';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+// eslint-disable-next-line no-unused-vars
+import { motion, useInView } from 'framer-motion';
 
 export function SupportForm() {
   const [formData, setFormData] = useState({
@@ -9,7 +13,7 @@ export function SupportForm() {
     email: '',
     phone: '',
     supportType: '',
-    timeframe: '',
+    timeframe: null,
     description: ''
   });
 
@@ -20,14 +24,29 @@ export function SupportForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleDateChange = (date) => {
+    setFormData(prev => ({ ...prev, timeframe: date }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
   };
 
-  const handleCalendarClick = () => {
-    const input = document.getElementById('timeframe-input');
-    input.showPicker();
+  // Framer Motion scroll animation setup
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const isLeftInView = useInView(leftRef, { once: true });
+  const isRightInView = useInView(rightRef, { once: true });
+
+  const fadeLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  };
+
+  const fadeRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
   };
 
   return (
@@ -37,23 +56,33 @@ export function SupportForm() {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        
-        {/* Left Text Content - Transparent over image */}
-        <div className="text-white max-w-lg flex flex-col justify-center items-start min-h-full">
+
+        {/* Left Text Content */}
+        <motion.div
+          ref={leftRef}
+          variants={fadeLeft}
+          initial="hidden"
+          animate={isLeftInView ? 'visible' : 'hidden'}
+          className="text-white max-w-lg flex flex-col justify-center items-start min-h-full"
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-lg">
             Be Part of the Change
           </h2>
           <p className="text-lg md:text-xl drop-shadow-md">
-            We believe in solutions built hand-in-hand with communities.
+            We believe in solutions built hand-in-hand with communities. Your collaboration can help us reach further and go deeper.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Right Form - White box */}
-        <div className="bg-white text-[#1D204B] p-8 rounded-xl shadow-2xl w-full">
+        {/* Right Form */}
+        <motion.div
+          ref={rightRef}
+          variants={fadeRight}
+          initial="hidden"
+          animate={isRightInView ? 'visible' : 'hidden'}
+          className="bg-white text-[#1D204B] p-8 rounded-xl shadow-2xl w-full"
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
-            <h3 className="text-2xl font-bold mb-4">
-              Get Involved
-            </h3>
+            <h3 className="text-2xl font-bold mb-4">Get Involved</h3>
 
             <input
               type="text"
@@ -110,25 +139,14 @@ export function SupportForm() {
             </select>
 
             <div className="relative">
-              <input
-                id="timeframe-input"
-                type="datetime-local"
-                name="timeframe"
-                value={formData.timeframe}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-[#41B4E7] focus:border-[#41B4E7] text-gray-900 pr-10 placeholder-gray-500"
-                required
-                placeholder="Preferred timeframe"
-                onFocus={(e) => e.target.showPicker()}
+              <DatePicker
+                selected={formData.timeframe}
+                onChange={handleDateChange}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Preferred timeframe"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md pr-10 text-gray-900"
               />
-              <button
-                type="button"
-                onClick={handleCalendarClick}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
-                aria-label="Open calendar"
-              >
-                <CalendarIcon className="h-5 w-5" />
-              </button>
+              <CalendarIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
             </div>
 
             <textarea
@@ -139,7 +157,7 @@ export function SupportForm() {
               rows="4"
               className="w-full px-4 py-3 border border-gray-300 rounded-md"
               required
-            ></textarea>
+            />
 
             <button
               type="submit"
@@ -148,7 +166,7 @@ export function SupportForm() {
               Send
             </button>
           </form>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import weblogo from '../assets/image4.png';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +17,7 @@ export default function Navbar() {
       <div className="fixed w-full top-0 left-0 z-50 px-4 pt-5">
         <div className="max-w-screen-xl mx-auto">
           {/* Main Nav Container - Added rounded-full and shadow for pill shape */}
-          <nav className="w-full px-8 py-3 bg-gradient-to-r from-[#1D204B] to-[#41B4E7] text-white flex justify-between items-center rounded-full shadow-lg">
+          <nav className="w-full px-6 py-2 bg-gradient-to-r from-[#1D204B] to-[#41B4E7] background-blur-md text-white flex justify-between items-center rounded-full shadow-lg transition-all duration-300">
             {/* Logo - with left padding */}
             <div className="flex items-center gap-2 pl-4">
               <img src={weblogo} alt="Logo" className="h-10 w-auto" />
@@ -59,26 +62,35 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile Menu - Now appears below the pill-shaped nav */}
-          {isMenuOpen && (
-            <div className="md:hidden bg-gradient-to-b from-[#1D204B] to-[#41B4E7] px-8 py-4 mt-2 rounded-lg shadow-lg">
-              <ul className="flex flex-col space-y-4 text-sm font-medium">
-                <li><a href="/#about" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>About Us</a></li>
-                <li><a href="/#our-pillars" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Our Pillars</a></li>
-                <li><a href="/#approach" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Approach</a></li>
-                <li><a href="/#launch" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Launch</a></li>
-                <li><a href="/#join" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Join Us</a></li>
-                <li>
-                  <a
-                    href="/#support" 
-                    className="block w-full text-center px-6 py-2 bg-[#1D204B] text-white font-medium rounded-full border-2 border-white mt-2"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Support Us
-                  </a>
-                </li>
-              </ul>
-            </div>
-          )}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden bg-gradient-to-b from-[#1D204B] to-[#41B4E7] px-8 py-4 mt-2 rounded-lg shadow-lg"
+              >
+                <ul className="flex flex-col space-y-4 text-sm font-medium">
+                  <li><a href="/#about" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>About Us</a></li>
+                  <li><a href="/#our-pillars" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Our Pillars</a></li>
+                  <li><a href="/#approach" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Approach</a></li>
+                  <li><a href="/#launch" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Launch</a></li>
+                  <li><a href="/#join" className="text-white block py-2" onClick={() => setIsMenuOpen(false)}>Join Us</a></li>
+                  <li>
+                    <a
+                      href="/#support"
+                      className="block w-full text-center px-6 py-2 bg-[#1D204B] text-white font-medium rounded-full border-2 border-white mt-2"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Support Us
+                    </a>
+                  </li>
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
         </div>
       </div>
     </>
