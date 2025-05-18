@@ -75,6 +75,7 @@ body {
   width: 100%;
   min-width: calc(var(--width) * var(--quantity));
   position: relative;
+  
 }
 
 .slider .item {
