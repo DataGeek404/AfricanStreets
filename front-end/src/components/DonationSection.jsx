@@ -42,7 +42,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
     }
 
     try {
-      const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
+      const res = await fetch('https://backend-yr3r.onrender.com/api/payments/mpesa', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
