@@ -33,35 +33,41 @@ export function DonationSection({ hideImage = false, className = "" }) {
   };
 
   const handleSubmit = async e => {
-    e.preventDefault();
-    setSubmitting(true);
-    setMessage('');
-    const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
-    if (!safaricomRegex.test(formData.phone)) {
-      setMessage("Please enter a valid Safaricom number.");
-      setSubmitting(false);
-      return;
-    }
+  e.preventDefault();
+  setSubmitting(true);
+  setMessage('');
 
+  const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
+  if (!safaricomRegex.test(formData.phone)) {
+    setMessage("Please enter a valid Safaricom number.");
+    setSubmitting(false);
+    return;
+  }
 
-    try {
-      const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+  try {
+    const token = localStorage.getItem('token'); // <-- make sure the user is logged in and token is stored
 
-      const data = await res.json();
+    const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { Authorization: `Bearer ${token}` }) // <--- Add token header
+      },
+      body: JSON.stringify(formData)
+    });
 
-      if (!res.ok) throw new Error(data.message || 'Payment failed');
+    const data = await res.json();
 
-      setMessage('Payment initiated! Awaiting confirmation...');
-    } catch (err) {
-      setMessage(err.message || 'Something went wrong.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
+    if (!res.ok) throw new Error(data.message || 'Payment failed');
+
+    setMessage('Payment initiated! Awaiting confirmation...');
+  } catch (err) {
+    setMessage(err.message || 'Something went wrong.');
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   return (
     <div id="support" className="relative w-full">
