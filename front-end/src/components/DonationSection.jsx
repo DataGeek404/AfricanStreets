@@ -85,7 +85,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
             <div className="bg-gray-50 p-8 rounded-xl shadow-md">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Full Name */}
-                <div>
+                {/* <div>
                   <label className="block text-gray-700">Full Name</label>
                   <input
                     type="text"
@@ -96,10 +96,10 @@ export function DonationSection({ hideImage = false, className = "" }) {
                     placeholder="Enter your full name"
                     className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
                   />
-                </div>
+                </div> */}
 
                 {/* Organization */}
-                <div>
+                {/* <div>
                   <label className="block text-gray-700">Organization</label>
                   <input
                     type="text"
@@ -109,10 +109,10 @@ export function DonationSection({ hideImage = false, className = "" }) {
                     placeholder="Organization name (optional)"
                     className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
                   />
-                </div>
+                </div> */}
 
                 {/* Email */}
-                <div>
+                {/* <div>
                   <label className="block text-gray-700">Email Address</label>
                   <input
                     type="email"
@@ -123,7 +123,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
                     placeholder="you@example.com"
                     className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
                   />
-                </div>
+                </div> */}
 
                 {/* Phone */}
                 {/* <div>
