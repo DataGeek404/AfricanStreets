@@ -6,11 +6,8 @@ import stripeLogo from '../assets/image.png';
 
 export function DonationSection({ hideImage = false, className = "" }) {
   const [formData, setFormData] = useState({
-    fullName: '',
-    organization: '',
-    email: '',
-    phone: '',
     paymentMethod: '',
+    phone: '',
     mpesaAmount: ''
   });
 
@@ -33,41 +30,37 @@ export function DonationSection({ hideImage = false, className = "" }) {
   };
 
   const handleSubmit = async e => {
-  e.preventDefault();
-  setSubmitting(true);
-  setMessage('');
+    e.preventDefault();
+    setSubmitting(true);
+    setMessage('');
 
-  const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
-  if (!safaricomRegex.test(formData.phone)) {
-    setMessage("Please enter a valid Safaricom number.");
-    setSubmitting(false);
-    return;
-  }
+    const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
+    if (!safaricomRegex.test(formData.phone)) {
+      setMessage("Please enter a valid Safaricom number.");
+      setSubmitting(false);
+      return;
+    }
 
-  try {
-    const token = localStorage.getItem('token'); // <-- make sure the user is logged in and token is stored
+    try {
+      const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
-    const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(token && { Authorization: `Bearer ${token}` }) // <--- Add token header
-      },
-      body: JSON.stringify(formData)
-    });
+      const data = await res.json();
 
-    const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Payment failed');
 
-    if (!res.ok) throw new Error(data.message || 'Payment failed');
-
-    setMessage('Payment initiated! Awaiting confirmation...');
-  } catch (err) {
-    setMessage(err.message || 'Something went wrong.');
-  } finally {
-    setSubmitting(false);
-  }
-};
-
+      setMessage('Payment initiated! Awaiting confirmation...');
+    } catch (err) {
+      setMessage(err.message || 'Something went wrong.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div id="support" className="relative w-full">
@@ -85,68 +78,12 @@ export function DonationSection({ hideImage = false, className = "" }) {
               <h2 className="text-3xl md:text-4xl font-bold text-[#41B4E7]">Support Us</h2>
               <p className="text-lg text-gray-700 max-w-lg">
                 Your contribution, big or small, goes directly to supporting mental health and substance use programs in underserved communities.
-                Help us run mobile clinics, offer psychosocial support, train local health workers, and reach those most in need.
               </p>
             </div>
 
-            {/* Form Section */}
+            {/* Payment Section */}
             <div className="bg-gray-50 p-8 rounded-xl shadow-md">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Full Name */}
-                <div>
-                  <label className="block text-gray-700">Full Name</label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter your full name"
-                    className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
-                  />
-                </div>
-
-                {/* Organization */}
-                <div>
-                  <label className="block text-gray-700">Organization</label>
-                  <input
-                    type="text"
-                    name="organization"
-                    value={formData.organization}
-                    onChange={handleChange}
-                    placeholder="Organization name (optional)"
-                    className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
-                  />
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label className="block text-gray-700">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="you@example.com"
-                    className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
-                  />
-                </div>
-
-                {/* Phone */}
-                {/* <div>
-                  <label className="block text-gray-700">Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    placeholder="07XXXXXXXX"
-                    className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
-                  />
-                </div> */}
-
                 {/* Payment Methods */}
                 <div>
                   <p className="text-gray-700 mb-3">Select a payment method</p>
@@ -198,13 +135,15 @@ export function DonationSection({ hideImage = false, className = "" }) {
                 )}
 
                 {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full bg-[#1D204B] text-white py-3 px-6 rounded-md hover:bg-[#3191c6] transition-colors font-medium text-lg"
-                >
-                  {submitting ? 'Processing...' : 'Support'}
-                </button>
+                {formData.paymentMethod === 'MPESA' && (
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full bg-[#1D204B] text-white py-3 px-6 rounded-md hover:bg-[#3191c6] transition-colors font-medium text-lg"
+                  >
+                    {submitting ? 'Processing...' : 'Support'}
+                  </button>
+                )}
 
                 {/* Feedback Message */}
                 {message && <p className="text-center mt-4 text-blue-600 font-semibold">{message}</p>}
