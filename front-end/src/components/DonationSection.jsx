@@ -23,48 +23,42 @@ export function DonationSection({ hideImage = false, className = "" }) {
     { name: 'Stripe', logo: stripeLogo }
   ];
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData(f => ({ ...f, [name]: value }));
-  };
-
-  const handlePaymentMethodClick = method => {
-    setFormData(f => ({ ...f, paymentMethod: method.name }));
-  };
-
- const handleSubmit = async e => {
-  e.preventDefault();
-  setSubmitting(true);
-  setMessage('');
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setSubmitting(true);
+    setMessage('');
 
   const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
-  if (!safaricomRegex.test(formData.phone)) {
-    setMessage("Please enter a valid Safaricom number.");
-    setSubmitting(false);
-    return;
-  }
+    if (!safaricomRegex.test(formData.phone)) {
+      setMessage("Please enter a valid Safaricom number.");
+      setSubmitting(false);
+      return;
+    }
 
-  try {
-    const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        // Removed Authorization header — this endpoint is public
-      },
-      body: JSON.stringify(formData)
-    });
+    try {
+      // Use CORS proxy
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+      const targetUrl = 'https://backend-yr3r.onrender.com/api/donations';
+      
+      const res = await fetch(proxyUrl + targetUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest' // Some proxies require this
+        },
+        body: JSON.stringify(formData)
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!res.ok) throw new Error(data.message || 'Payment failed');
-
-    setMessage('Payment initiated! Awaiting confirmation...');
-  } catch (err) {
-    setMessage(err.message || 'Something went wrong.');
-  } finally {
-    setSubmitting(false);
-  }
-};
+      if (!res.ok) throw new Error(data.message || 'Payment failed');
+      setMessage('Payment initiated! Awaiting confirmation...');
+    } catch (err) {
+      setMessage(err.message || 'Something went wrong.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
 
   return (
