@@ -7,14 +7,15 @@ import MpesaForm from './MpesaForm';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 
-
 export function DonationSection({ hideImage = false, className = "" }) {
   const [formData, setFormData] = useState({
-    paymentMethod: '',
+    fullName: '',
+    organization: '',
+    email: '',
     phone: '',
+    paymentMethod: '',
     mpesaAmount: ''
   });
-
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -31,6 +32,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
 
   const handlePaymentMethodClick = method => {
     setFormData(f => ({ ...f, paymentMethod: method.name }));
+    setMessage('');
   };
 
   const handleSubmit = async e => {
@@ -38,27 +40,43 @@ export function DonationSection({ hideImage = false, className = "" }) {
     setSubmitting(true);
     setMessage('');
 
-    const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
-    if (!safaricomRegex.test(formData.phone)) {
-      setMessage("Please enter a valid Safaricom number.");
-      setSubmitting(false);
-      return;
+    // Only validate M-PESA fields here
+    if (formData.paymentMethod === 'MPESA') {
+      const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
+      if (!safaricomRegex.test(formData.phone)) {
+        setMessage("Please enter a valid Safaricom number.");
+        setSubmitting(false);
+        return;
+      }
     }
 
     try {
-      const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      const payload = {
+        fullName: formData.fullName,
+        organization: formData.organization,
+        email: formData.email,
+        method: formData.paymentMethod,
+        phone: formData.phone,
+        amount: formData.mpesaAmount
+      };
+
+      const res = await fetch(
+        'https://backend-yr3r.onrender.com/api/donations',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }
+      );
 
       const data = await res.json();
-
       if (!res.ok) throw new Error(data.message || 'Payment failed');
 
-      setMessage('Payment initiated! Awaiting confirmation...');
+      setMessage(
+        formData.paymentMethod === 'MPESA'
+          ? 'STK push sent! Check your phone to complete it.'
+          : 'Thank you! We’ll be adding this payment method soon.'
+      );
     } catch (err) {
       setMessage(err.message || 'Something went wrong.');
     } finally {
@@ -70,45 +88,100 @@ export function DonationSection({ hideImage = false, className = "" }) {
     <div id="support" className="relative w-full">
       {!hideImage && (
         <div className="w-full h-[35vh] md:h-[50vh] -mt-1">
-          <img src={landscapeImage} alt="Community landscape" className="w-full h-full object-cover" />
+          <img
+            src={landscapeImage}
+            alt="Community landscape"
+            className="w-full h-full object-cover"
+          />
         </div>
       )}
 
       <div className={`w-full bg-white py-16 ${className}`}>
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Text Section */}
+            {/* Text */}
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#41B4E7]">Support Us</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#41B4E7]">
+                Support Us
+              </h2>
               <p className="text-lg text-gray-700 max-w-lg">
-                Your contribution, big or small, goes directly to supporting mental health and substance use programs in underserved communities.
+                Your contribution, big or small, goes directly to supporting
+                mental health and substance use programs in underserved
+                communities.
               </p>
             </div>
 
-            {/* Payment Section */}
+            {/* Form */}
             <div className="bg-gray-50 p-8 rounded-xl shadow-md">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Full Name */}
+                <div>
+                  <label className="block text-gray-700">Full Name</label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your full name"
+                    className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md bg-white text-gray-900"
+                  />
+                </div>
+
+                {/* Organization */}
+                <div>
+                  <label className="block text-gray-700">Organization</label>
+                  <input
+                    type="text"
+                    name="organization"
+                    value={formData.organization}
+                    onChange={handleChange}
+                    placeholder="Organization (optional)"
+                    className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md bg-white text-gray-900"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="block text-gray-700">Email Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="you@example.com"
+                    className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md bg-white text-gray-900"
+                  />
+                </div>
+
                 {/* Payment Methods */}
                 <div>
-                  <p className="text-gray-700 mb-3">Select a payment method</p>
+                  <p className="text-gray-700 mb-3">
+                    Select a payment method
+                  </p>
                   <div className="grid grid-cols-3 gap-4">
                     {paymentMethods.map(method => (
                       <motion.div
                         key={method.name}
                         onClick={() => handlePaymentMethodClick(method)}
-                        className={`border rounded-md p-3 flex items-center justify-center cursor-pointer transition-all
-                          ${formData.paymentMethod === method.name
+                        className={`border rounded-md p-3 flex items-center justify-center cursor-pointer transition-all ${
+                          formData.paymentMethod === method.name
                             ? 'border-[#41B4E7] bg-blue-50 shadow-md'
                             : 'border-gray-300 hover:border-gray-400 hover:shadow-sm'
-                          }`}
+                        }`}
                       >
-                        <img src={method.logo} alt={method.name} className="w-full h-auto max-h-16 object-contain" />
+                        <img
+                          src={method.logo}
+                          alt={method.name}
+                          className="w-full h-auto max-h-16 object-contain"
+                        />
                       </motion.div>
                     ))}
                   </div>
                 </div>
 
-                {/* Conditional Form */}
+                {/* MPESA Form */}
                 {formData.paymentMethod === 'MPESA' && (
                   <MpesaForm
                     phone={formData.phone}
@@ -117,8 +190,11 @@ export function DonationSection({ hideImage = false, className = "" }) {
                     submitting={submitting}
                   />
                 )}
+
+                {/* Coming Soon */}
                 <AnimatePresence>
-                  {(formData.paymentMethod === 'PayPal' || formData.paymentMethod === 'MasterCard') && (
+                  {(formData.paymentMethod === 'PayPal' ||
+                    formData.paymentMethod === 'MasterCard') && (
                     <motion.div
                       key={formData.paymentMethod}
                       initial={{ opacity: 0, y: 10 }}
@@ -127,16 +203,30 @@ export function DonationSection({ hideImage = false, className = "" }) {
                       transition={{ duration: 0.3 }}
                       className="text-center p-6 bg-yellow-50 border border-yellow-300 rounded-md text-yellow-800 font-medium"
                     >
-                      {formData.paymentMethod} support coming soon. Stay tuned!
+                      {formData.paymentMethod} support coming soon. Stay
+                      tuned!
                     </motion.div>
                   )}
                 </AnimatePresence>
 
-                {/* Feedback Message */}
-                {message && <p className="text-center mt-4 text-blue-600 font-semibold">{message}</p>}
-              </form>
+                {/* Submit for MPESA */}
+                {formData.paymentMethod === 'MPESA' && (
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full bg-[#1D204B] text-white py-3 rounded-md hover:bg-[#3191c6] transition-colors font-medium text-lg"
+                  >
+                    {submitting ? 'Processing...' : 'Support'}
+                  </button>
+                )}
 
-              
+                {/* Feedback */}
+                {message && (
+                  <p className="text-center mt-4 text-blue-600 font-semibold">
+                    {message}
+                  </p>
+                )}
+              </form>
             </div>
           </div>
         </div>
