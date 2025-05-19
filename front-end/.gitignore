@@ -3,7 +3,11 @@
 
 # Environment files
 .env
-.env.* # Covers .env.local, .env.development, .env.example, etc.
+.env.* 
+# Covers 
+.env.local 
+.env.development 
+.env.example
 
 /*.env
 
