@@ -65,7 +65,12 @@ export function DonationSection({ hideImage = false, className = '' }) {
       const res = await fetch('https://backend-yr3r.onrender.com/api', {
         method: 'POST',
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "*/*"
+      },
+  withCredentials: false, // This is important for CORS
+  timeout: 30000, 
         body: JSON.stringify(payload)
       });
 
