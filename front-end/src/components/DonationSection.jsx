@@ -209,17 +209,6 @@ export function DonationSection({ hideImage = false, className = "" }) {
                   )}
                 </AnimatePresence>
 
-                {/* Submit for MPESA */}
-                {formData.paymentMethod === 'MPESA' && (
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full bg-[#1D204B] text-white py-3 rounded-md hover:bg-[#3191c6] transition-colors font-medium text-lg"
-                  >
-                    {submitting ? 'Processing...' : 'Support'}
-                  </button>
-                )}
-
                 {/* Feedback */}
                 {message && (
                   <p className="text-center mt-4 text-blue-600 font-semibold">
