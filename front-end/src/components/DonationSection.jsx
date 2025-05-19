@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import landscapeImage from '../assets/peeps.jpg';
 import mpesaLogo from '../assets/image 1.png';
 import paypalLogo from '../assets/paypal.png';
-import masterCardLogo from '../assets/OIP.jpg';
+import masterCardLogo from '../assets/mastercard.png';
 import MpesaForm from './MpesaForm';
 
 export function DonationSection({ hideImage = false, className = "" }) {
