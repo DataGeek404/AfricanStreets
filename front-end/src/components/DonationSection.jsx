@@ -3,6 +3,7 @@ import landscapeImage from '../assets/peeps.jpg';
 import mpesaLogo from '../assets/image 1.png';
 import paypalLogo from '../assets/paypal.png';
 import stripeLogo from '../assets/image.png';
+import MpesaForm from './MpesaForm';
 
 export function DonationSection({ hideImage = false, className = "" }) {
   const [formData, setFormData] = useState({
@@ -27,7 +28,6 @@ export function DonationSection({ hideImage = false, className = "" }) {
 
   const handlePaymentMethodClick = method => {
     setFormData(f => ({ ...f, paymentMethod: method.name }));
-    
   };
 
   const handleSubmit = async e => {
@@ -105,50 +105,18 @@ export function DonationSection({ hideImage = false, className = "" }) {
                   </div>
                 </div>
 
-                {/* MPESA Extra Fields */}
+                {/* Conditional Form */}
                 {formData.paymentMethod === 'MPESA' && (
-                  <div className="space-y-4 mt-4">
-                    <div>
-                      <label className="block text-gray-700">MPESA Phone Number</label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                        placeholder="07XXXXXXXX"
-                        className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-700">Amount (KES)</label>
-                      <input
-                        type="number"
-                        name="mpesaAmount"
-                        value={formData.mpesaAmount}
-                        onChange={handleChange}
-                        required
-                        placeholder="Amount in KES"
-                        className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* Submit Button */}
-                {formData.paymentMethod === 'MPESA' && (
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full bg-[#1D204B] text-white py-3 px-6 rounded-md hover:bg-[#3191c6] transition-colors font-medium text-lg"
-                  >
-                    {submitting ? 'Processing...' : 'Support'}
-                  </button>
+                  <MpesaForm
+                    phone={formData.phone}
+                    amount={formData.mpesaAmount}
+                    onChange={handleChange}
+                    submitting={submitting}
+                  />
                 )}
 
                 {/* Feedback Message */}
                 {message && <p className="text-center mt-4 text-blue-600 font-semibold">{message}</p>}
-                
               </form>
             </div>
           </div>
