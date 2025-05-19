@@ -8,11 +8,6 @@ import MpesaForm from './MpesaForm';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Make sure to define REACT_APP_BACKEND_URL_API in your .env file
-
-// 1) Must start with REACT_APP_ to be exposed in CRA bundles
-//
-
 export function DonationSection({ hideImage = false, className = '' }) {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -57,15 +52,6 @@ export function DonationSection({ hideImage = false, className = '' }) {
       }
     }
 
-    // 2) Guard here so you never fetch(undefined)
-    // eslint-disable-next-line no-undef
-    const BACKEND_URL_API=process.env.REACT_APP_BACKEND_URL_API
-    if (!BACKEND_URL_API) {
-      setMessage('Backend URL not configured. Check your .env.');
-      setSubmitting(false);
-      return;
-    }
-
     try {
       const payload = {
         fullName: formData.fullName,
@@ -76,7 +62,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
         amount: formData.mpesaAmount
       };
 
-      const res = await fetch(BACKEND_URL_API, {
+      const res = await fetch('https://backend-yr3r.onrender.com/api', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -88,7 +74,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
       setMessage(
         formData.paymentMethod === 'MPESA'
           ? 'STK push sent! Check your phone to complete it.'
-          : 'Thank you! We’ll be adding this payment method soon.'
+          : 'Thank you! We will be adding this payment method soon.'
       );
     } catch (err) {
       setMessage(err.message || 'Something went wrong.');
