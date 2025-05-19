@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import landscapeImage from '../assets/peeps.jpg';
 import mpesaLogo from '../assets/image 1.png';
 import paypalLogo from '../assets/paypal.png';
-import stripeLogo from '../assets/image.png';
+import masterCardLogo from '../assets/OIP.jpg';
 import MpesaForm from './MpesaForm';
 
 export function DonationSection({ hideImage = false, className = "" }) {
@@ -18,7 +18,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
   const paymentMethods = [
     { name: 'MPESA', logo: mpesaLogo },
     { name: 'PayPal', logo: paypalLogo },
-    { name: 'Stripe', logo: stripeLogo }
+    { name: 'Stripe', logo: masterCardLogo }
   ];
 
   const handleChange = e => {
@@ -118,6 +118,12 @@ export function DonationSection({ hideImage = false, className = "" }) {
                 {/* Feedback Message */}
                 {message && <p className="text-center mt-4 text-blue-600 font-semibold">{message}</p>}
               </form>
+
+              {(formData.paymentMethod === 'PayPal' || formData.paymentMethod === 'MasterCard') && (
+                <div className="text-center p-6 bg-yellow-50 border border-yellow-300 rounded-md text-yellow-800 font-medium">
+                  {formData.paymentMethod} support coming soon. Stay tuned!
+                </div>
+              )}
             </div>
           </div>
         </div>
