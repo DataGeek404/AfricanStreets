@@ -4,6 +4,9 @@ import mpesaLogo from '../assets/image 1.png';
 import paypalLogo from '../assets/paypal.png';
 import masterCardLogo from '../assets/mastercard.png';
 import MpesaForm from './MpesaForm';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 export function DonationSection({ hideImage = false, className = "" }) {
   const [formData, setFormData] = useState({
@@ -90,7 +93,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
                   <p className="text-gray-700 mb-3">Select a payment method</p>
                   <div className="grid grid-cols-3 gap-4">
                     {paymentMethods.map(method => (
-                      <div
+                      <motion.div
                         key={method.name}
                         onClick={() => handlePaymentMethodClick(method)}
                         className={`border rounded-md p-3 flex items-center justify-center cursor-pointer transition-all
@@ -100,7 +103,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
                           }`}
                       >
                         <img src={method.logo} alt={method.name} className="w-full h-auto max-h-16 object-contain" />
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
@@ -114,11 +117,21 @@ export function DonationSection({ hideImage = false, className = "" }) {
                     submitting={submitting}
                   />
                 )}
-                {(formData.paymentMethod === 'PayPal' || formData.paymentMethod === 'MasterCard') && (
-                  <div className="text-center p-6 bg-yellow-50 border border-yellow-300 rounded-md text-yellow-800 font-medium">
-                    {formData.paymentMethod} support coming soon. Stay tuned!
-                  </div>
-                )}
+                <AnimatePresence>
+                  {(formData.paymentMethod === 'PayPal' || formData.paymentMethod === 'MasterCard') && (
+                    <motion.div
+                      key={formData.paymentMethod}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-center p-6 bg-yellow-50 border border-yellow-300 rounded-md text-yellow-800 font-medium"
+                    >
+                      {formData.paymentMethod} support coming soon. Stay tuned!
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 {/* Feedback Message */}
                 {message && <p className="text-center mt-4 text-blue-600 font-semibold">{message}</p>}
               </form>

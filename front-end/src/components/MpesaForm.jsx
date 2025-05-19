@@ -1,8 +1,15 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 
 export default function MpesaForm({ phone, amount, onChange, submitting }) {
   return (
-    <div className="space-y-4 mt-4">
+    <motion.div
+      className="space-y-4 mt-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+    >
       <div>
         <label className="block text-gray-700">MPESA Phone Number</label>
         <input
@@ -27,6 +34,7 @@ export default function MpesaForm({ phone, amount, onChange, submitting }) {
           className="mt-1 w-full px-4 py-2 border border-gray-400 rounded-md text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring focus:border-[#41B4E7]"
         />
       </div>
+
       <button
         type="submit"
         disabled={submitting}
@@ -34,6 +42,6 @@ export default function MpesaForm({ phone, amount, onChange, submitting }) {
       >
         {submitting ? 'Processing...' : 'Support'}
       </button>
-    </div>
+    </motion.div>
   );
 }
