@@ -18,7 +18,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
   const paymentMethods = [
     { name: 'MPESA', logo: mpesaLogo },
     { name: 'PayPal', logo: paypalLogo },
-    { name: 'Stripe', logo: masterCardLogo }
+    { name: 'MasterCard', logo: masterCardLogo }
   ];
 
   const handleChange = e => {
