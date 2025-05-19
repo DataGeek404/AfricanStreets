@@ -20,42 +20,48 @@ export function DonationSection({ hideImage = false, className = "" }) {
     { name: 'Stripe', logo: stripeLogo }
   ];
 
- const handleSubmit = async e => {
-  e.preventDefault();
-  setSubmitting(true);
-  setMessage('');
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(f => ({ ...f, [name]: value }));
+  };
 
-  const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
-  if (!safaricomRegex.test(formData.phone)) {
-    setMessage("Please enter a valid Safaricom number.");
-    setSubmitting(false);
-    return;
-  }
+  const handlePaymentMethodClick = method => {
+    setFormData(f => ({ ...f, paymentMethod: method.name }));
+    
+  };
 
-  try {
-    const res = await fetch('https://backend-yr3r.onrender.com/api/payments/mpesa', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    });
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setSubmitting(true);
+    setMessage('');
 
-    if (res.status === 204) {
-      setMessage('Payment initiated! Awaiting confirmation...');
-    } else {
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Payment failed');
-      setMessage('Payment initiated! Awaiting confirmation...');
+    const safaricomRegex = /^(?:254|\+254|0)?(7[0-9]{8}|1[0-9]{8})$/;
+    if (!safaricomRegex.test(formData.phone)) {
+      setMessage("Please enter a valid Safaricom number.");
+      setSubmitting(false);
+      return;
     }
-  } catch (err) {
-    console.error('Payment error:', err);
-    setMessage(err.message || 'Something went wrong.');
-  } finally {
-    setSubmitting(false);
-  }
-};
 
+    try {
+      const res = await fetch('https://backend-yr3r.onrender.com/api/donations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.message || 'Payment failed');
+
+      setMessage('Payment initiated! Awaiting confirmation...');
+    } catch (err) {
+      setMessage(err.message || 'Something went wrong.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div id="support" className="relative w-full">
