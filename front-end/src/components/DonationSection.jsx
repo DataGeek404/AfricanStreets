@@ -148,6 +148,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
 
                 {/* Feedback Message */}
                 {message && <p className="text-center mt-4 text-blue-600 font-semibold">{message}</p>}
+                
               </form>
             </div>
           </div>
