@@ -162,7 +162,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
                   <p className="text-gray-700 mb-3">
                     Select a payment method
                   </p>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="flex flex-wrap gap-4 justify-center">
                     {paymentMethods.map(method => (
                       <motion.div
                         key={method.name}
@@ -176,7 +176,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
                         <img
                           src={method.logo}
                           alt={method.name}
-                          className="w-full h-auto max-h-16 object-contain"
+                          className="w-16 h-10 object-contain"
                         />
                       </motion.div>
                     ))}
