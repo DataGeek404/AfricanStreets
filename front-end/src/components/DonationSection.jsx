@@ -257,21 +257,6 @@ export function DonationSection({ hideImage = false, className = '' }) {
                   )}
                 </AnimatePresence>
 
-                {/* Submit Button */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={submitting || !formData.paymentMethod}
-                    className={`w-full py-3 px-6 rounded-md text-white font-medium transition-colors ${
-                      submitting || !formData.paymentMethod
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-blue-600 hover:bg-blue-700'
-                    }`}
-                  >
-                    {submitting ? 'Processing...' : 'Donate Now'}
-                  </button>
-                </div>
-
                 {/* Status Messages */}
                 {message && (
                   <motion.div
