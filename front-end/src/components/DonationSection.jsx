@@ -66,12 +66,13 @@ export function DonationSection({ hideImage = false, className = '' }) {
         method: 'POST',
         mode: 'cors',
         headers: {
-        "Content-Type": "application/json",
-        "Accept": "*/*"
-      },
-  withCredentials: false, // This is important for CORS
-  timeout: 30000, 
-        body: JSON.stringify(payload)
+          'Content-Type': 'application/json',
+          'Accept': '*/*',
+          'Access-Control-Allow-Origin': '*'
+        },
+        withCredentials: false,
+        // Increase request timeout for this specific endpoint
+        timeout: 45000 // 45 seconds
       });
 
       const data = await res.json();
