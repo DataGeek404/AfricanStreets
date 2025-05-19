@@ -66,7 +66,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
     }
 
     // Check backend URL is configured
-    if (!process.env.NEXT_PUBLIC_APP_BACKEND_URL_API) {
+    if (!process.env.REACT_APP_BACKEND_URL_API) {
       setMessage('Payment service is currently unavailable. Please try again later.');
       console.error('Backend URL not configured. Check your .env file.');
       setSubmitting(false);
@@ -85,7 +85,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
 
       const response = await fetch(process.env.REACT_APP_BACKEND_URL_API, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
@@ -97,8 +97,6 @@ export function DonationSection({ hideImage = false, className = '' }) {
         throw new Error(errorData.message || `Payment failed with status ${response.status}`);
       }
 
-     // const data = await response.json();
-      
       setMessage(
         formData.paymentMethod === 'MPESA'
           ? 'STK push sent! Check your phone to complete the payment.'
@@ -143,7 +141,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
                 Support Our Cause
               </h2>
               <p className="text-lg text-gray-700 max-w-lg">
-                Your generous donation helps us provide mental health and substance use 
+                Your generous donation helps us provide mental health and substance use
                 programs to underserved communities. Every contribution makes a difference.
               </p>
               <div className="pt-4">
@@ -170,7 +168,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
                       onChange={handleChange}
                       required
                       placeholder="Your full name"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
 
@@ -182,7 +180,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
                       value={formData.organization}
                       onChange={handleChange}
                       placeholder="Your organization"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-900"
                     />
                   </div>
 
@@ -195,7 +193,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
                       onChange={handleChange}
                       required
                       placeholder="your@email.com"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -240,7 +238,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
                 {/* Coming Soon Notices */}
                 <AnimatePresence>
                   {(formData.paymentMethod === 'PayPal' ||
-                    formData.paymentMethod === 'MasterCard' || 
+                    formData.paymentMethod === 'MasterCard' ||
                     formData.paymentMethod === 'Stripe') && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
@@ -252,7 +250,7 @@ export function DonationSection({ hideImage = false, className = '' }) {
                         {formData.paymentMethod} integration is coming soon!
                       </p>
                       <p className="text-sm mt-1">
-                        We're working to add this payment option. In the meantime, 
+                        We're working to add this payment option. In the meantime,
                         please consider using MPESA.
                       </p>
                     </motion.div>
