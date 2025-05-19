@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React, { useState } from 'react';
 import landscapeImage from '../assets/peeps.jpg';
 import mpesaLogo from '../assets/image 1.png';
@@ -12,6 +11,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Make sure to define REACT_APP_BACKEND_URL_API in your .env file
 
 // 1) Must start with REACT_APP_ to be exposed in CRA bundles
+const BACKEND_URL_API = import.meta.env.VITE_BACKEND_URL_API;
+
 
 if (!BACKEND_URL_API) {
   // for quick dev feedback; you can remove or wrap under NODE_ENV !== 'production'
