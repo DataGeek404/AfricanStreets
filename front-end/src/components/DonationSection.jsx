@@ -11,13 +11,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Make sure to define REACT_APP_BACKEND_URL_API in your .env file
 
 // 1) Must start with REACT_APP_ to be exposed in CRA bundles
-const BACKEND_URL_API = import.meta.env.VITE_BACKEND_URL_API;
+const BACKEND_URL_API = import.meta.env.NEXT_PUBLIC_BACKEND_URL_API;
 
 
 if (!BACKEND_URL_API) {
   // for quick dev feedback; you can remove or wrap under NODE_ENV !== 'production'
   console.error(
-    '❌ REACT_APP_BACKEND_URL_API is not defined. Set it in your .env (and restart your dev server).'
+    '❌ VITE_BACKEND_URL_API is not defined. Set it in your .env (and restart your dev server).'
   );
 }
 
