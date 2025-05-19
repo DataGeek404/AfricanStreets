@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import landscapeImage from '../assets/peeps.jpg';
 import mpesaLogo from '../assets/image 1.png';
 import paypalLogo from '../assets/paypal.png';
+import stripeLogo from '../assets/image.png';
 import masterCardLogo from '../assets/mastercard.png';
 import MpesaForm from './MpesaForm';
 // eslint-disable-next-line no-unused-vars
@@ -22,7 +23,8 @@ export function DonationSection({ hideImage = false, className = "" }) {
   const paymentMethods = [
     { name: 'MPESA', logo: mpesaLogo },
     { name: 'PayPal', logo: paypalLogo },
-    { name: 'MasterCard', logo: masterCardLogo }
+    { name: 'MasterCard', logo: masterCardLogo },
+    { name: 'Stripe', logo: stripeLogo }
   ];
 
   const handleChange = e => {
@@ -194,7 +196,8 @@ export function DonationSection({ hideImage = false, className = "" }) {
                 {/* Coming Soon */}
                 <AnimatePresence>
                   {(formData.paymentMethod === 'PayPal' ||
-                    formData.paymentMethod === 'MasterCard') && (
+                    formData.paymentMethod === 'MasterCard' || 
+                    formData.paymentMethod === 'Stripe') && (
                     <motion.div
                       key={formData.paymentMethod}
                       initial={{ opacity: 0, y: 10 }}
