@@ -8,6 +8,10 @@ import MpesaForm from './MpesaForm';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Make sure to define REACT_APP_BACKEND_URL_API in your .env file
+// eslint-disable-next-line no-undef
+const BACKEND_URL_API = process.env.BACKEND_URL_API;
+
 export function DonationSection({ hideImage = false, className = "" }) {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -63,7 +67,7 @@ export function DonationSection({ hideImage = false, className = "" }) {
       };
 
       const res = await fetch(
-        'https://backend-yr3r.onrender.com/api/donations',
+        BACKEND_URL_API,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
