@@ -123,6 +123,17 @@ export function DonationSection({ hideImage = false, className = '' }) {
                 Your contribution helps provide mental health resources and
                 substance abuse recovery programs to underserved communities.
               </p>
+              <div className="mt-4">
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLSdYEeHhXnoh_XTipw4A-BrZ3W2imrBtk_UdKTOeDaYI97SPiw/viewform?usp=header"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block text-[#41B4E7] font-medium underline hover:text-[#2f9bd2] transition"
+  >
+    Here is the link to make your Donation
+  </a>
+</div>
+
             </div>
 
             <div className="bg-gray-50 p-8 rounded-xl shadow-md">
